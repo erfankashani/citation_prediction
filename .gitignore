@@ -1,0 +1,7 @@
+# exclude Data and Result foulders
+Data/*
+Results/*
+
+# exception to the rule
+!Data/.gitkeep
+!Results/.gitkeep
