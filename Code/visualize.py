@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import ast
 from six.moves import urllib
+from pathlib import Path
 
 # variables
 rf_images = ["1yr.png", "1yr.png", "2yr.png", "3yr.png", "4yr.png", "5yr.png",
@@ -62,6 +63,8 @@ demo_text_2 = 'This study utilizes the famous [Aminer dataset](https://www.amine
              are provided in the [report](https://drive.google.com/file/d/1zMH1FKa_1LqWtWLVhxDYSeCywIKeLKvl/view?usp=sharing) and \
              the [github](https://github.com/erfankashani/citation_prediction).'
 
+main_path = Path(__file__).parents[1]
+
 demo_text_3 = 'To start the demo please choose a paper from the dropdown field:'
 
 st.title('Citation Prediction')
@@ -69,7 +72,7 @@ st.title('Citation Prediction')
 # chache the time consuming tasks in the beginging
 @st.cache()
 def get_demo_data():
-    demo_data = pd.read_csv('../Results/demo_data_frame.csv')
+    demo_data = pd.read_csv(str(main_path / 'Results/demo_data_frame.csv'))
     return demo_data
 
 # Edits paper dataframe for table display
@@ -185,21 +188,22 @@ def show_results():
     st.write(results_text)
 
     # MAE graph
-    image_mae = Image.open('../Results/image/mae.png')
+    image_mae = Image.open(str(main_path / 'Results/image/mae.png'))
     st.image(image_mae, caption='Figure 1: Mean Absolute Error')
 
     # RMSE graph
-    image_rmse = Image.open('../Results/image/rmse.png')
+    image_rmse = Image.open(str(main_path / 'Results/image/rmse.png'))
     st.image(image_rmse, caption='Figure 2: Root Mean Square Error')
 
     # R Square praph
-    image_r_square = Image.open('../Results/image/r_square.png')
+    image_r_square = Image.open(str(main_path / 'Results/image/r_square.png'))
     st.image(image_r_square, caption='Figure 3: R Square')
 
     # Random Forest slider graph
     st.write("Random Forest model performance:")
     year_rf = st.slider('Number of years after publication?',1,10)    
-    rf_image = Image.open('../Results/image/' + rf_images[year_rf])
+    year_image = 'Results/image/' + rf_images[year_rf]
+    rf_image = Image.open(str(main_path / year_image))
     st.image(rf_image, caption='Figure 4: Random Forest Citation Frequency Histogram', width=600)
 
     # Random Forest performance table
@@ -218,31 +222,34 @@ def show_results():
     year_lr = st.slider('Number of years after publication?',0,10)
     col1, col2, col3 = st.beta_columns(3)
     with col1:
-        lr_image = Image.open('../Results/image/lr/' + lr_images[year_lr])
+        lr_year_image = 'Results/image/lr/' + lr_images[year_lr]
+        lr_image = Image.open(str(main_path / lr_year_image))
         st.image(lr_image, caption='Figure 5: LR Citation Frequency Histogram')
     with col2:
-        svm_image = Image.open('../Results/image/svm/' + svm_images[year_lr])
+        svm_year_image = 'Results/image/svm/' + svm_images[year_lr]
+        svm_image = Image.open(str(main_path / svm_year_image))
         st.image(svm_image, caption='Figure 6: SVM Citation Frequency Histogram')
     with col3:
-        km_image = Image.open('../Results/image/kmeans/' + km_images[year_lr])
+        km_year_image = 'Results/image/kmeans/' + km_images[year_lr]
+        km_image = Image.open(str(main_path / km_year_image))
         st.image(km_image, caption='Figure 7: K-Means Citation Frequency Histogram')
 
 # Renders about us page
 def show_about_us():
     st.write(about_us_text)
-    
+
     st.subheader("\nOur team:")
     col1, col2 = st.beta_columns(2)
     with col1:
         st.subheader("Fatima Tafazzoli Shadpour")
-        st.image('../Results/image/fatima.jpeg',use_column_width='always')
+        st.image(str(main_path / 'Results/image/fatima.jpeg'),use_column_width='always')
         st.subheader("Erfan Kashani")
-        st.image('../Results/image/erfan.jpeg',use_column_width='always')
+        st.image(str(main_path / 'Results/image/erfan.jpeg'),use_column_width='always')
     with col2:
         st.subheader("Lubaba Tasnim")
-        st.image('../Results/image/Lubaba.jpeg',use_column_width='always')
+        st.image(str(main_path / 'Results/image/Lubaba.jpeg'),use_column_width='always')
         st.subheader("Muhammad Karim")
-        st.image('../Results/image/hamza_1.png',use_column_width='always')
+        st.image(str(main_path / 'Results/image/hamza_1.png'),use_column_width='always')
 
 try:
     # Navigation Menu

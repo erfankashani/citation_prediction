@@ -4,7 +4,9 @@ In the rise of the current rate of publication, creating and identifying influen
 
 This study utilizes the famous [Aminer dataset](https://www.aminer.org/citation) for training and testing  purposes. We examine 10 independent features related to papers, authors, and venues to discover the highly cited papers’ patterns and predict their influence within one to ten years of publication. The model’s training set consists of over 1 million academic papers while the testing set covers over 200,000 papers. More details are provided in the [report](prediction_publication_performance.pdf).
 
-You can view the website [here](www.google.com).
+You can view the website [here](https://share.streamlit.io/erfankashani/citation_prediction/main/Code/visualize.py).
+
+![DEMO GIF](/Results/image/demo.gif)
 
 #### To start the front-end locally follow the instructions
 
