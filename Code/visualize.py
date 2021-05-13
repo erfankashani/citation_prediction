@@ -49,6 +49,21 @@ results_text = 'Our study successfully addresses the problem of Prediction Publi
              the model performance overall by combining several simpler machine learning models and decreasing \
              their bias and variance.'
 
+demo_text_1 = 'In the rise of the current rate of publication, creating and identifying influential papers are \
+             challenging tasks for researchers. The objective of this project is to predict the impact of an \
+             academic paper in future using the citations metric. The research team performs an extensive study \
+             into the current methodologies for this machine learning problem. Consequently, the project arrives \
+             at multiple ensemble learning algorithms to perform the task.'
+
+demo_text_2 = 'This study utilizes the famous [Aminer dataset](https://www.aminer.org/citation) for training and testing \
+             purposes. We examine 10 independent features related to papers, authors, and venues to discover the highly \
+             cited papers’ patterns and predict their influence within one to ten years of publication. The model’s training \
+             set consists of over 1 million academic papers while the testing set covers over 200,000 papers. More details \
+             are provided in the [report](https://drive.google.com/file/d/1zMH1FKa_1LqWtWLVhxDYSeCywIKeLKvl/view?usp=sharing) and \
+             the [github](https://github.com/erfankashani/citation_prediction).'
+
+demo_text_3 = 'To start the demo please choose a paper from the dropdown field:'
+
 st.title('Citation Prediction')
 
 # chache the time consuming tasks in the beginging
@@ -115,6 +130,10 @@ def get_prediction_table(paper):
 
 # Renders Demo page
 def show_demo():
+    st.write(demo_text_1)
+    st.write(demo_text_2)
+    st.write(demo_text_3)
+
     demo_df = get_demo_data()
     demo_df = demo_df.set_index("title")
     
